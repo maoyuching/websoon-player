@@ -8,7 +8,7 @@ const port = 8080;
 const videop = 'D:\jianpianDownload';
 
 // 设置静态文件目录
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname)));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) =>{
@@ -32,7 +32,7 @@ app.get('/videos', (req, res) => {
 app.get('/video/:filename', (req, res) => {
     const filename = req.params.filename;
     const videoPath = path.join(videop, '/', filename);
-    console.log(`head is -> ${req.rawHeaders}`)
+    console.log(`header is -> ${req.rawHeaders}`)
     console.log('-----------------\n')
 
     // 检查文件是否存在
