@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+</head>
+<body>
+    <h1>Video Player</h1>
+    <ul id="videoList"></ul>
+
+    <script>
+        fetch('/videos')
+            .then(response => response.json())
+            .then(videos => {
+                const videoList = document.getElementById('videoList');
+                videos.forEach(video => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = video;
+                    listItem.addEventListener('click', () => playVideo(video));
+                    videoList.appendChild(listItem);
+                });
+            });
+
+        function playVideo(video) {
+            const videoPlayer = document.createElement('video');
+            videoPlayer.controls = true;
+            videoPlayer.playsInline = true;
+            videoPlayer.muted = true;
+            videoPlayer.autoplay = true;
+            videoPlayer.loop = true;
+            videoPlayer.src = `/video/${video}`;
+            document.body.appendChild(videoPlayer);
+        }
+    </script>
+</body>
+</html>
