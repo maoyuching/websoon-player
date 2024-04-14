@@ -3,11 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <title>Websoon Player</title>
+    <style>
+        /* 基本的无序列表样式 */
+        ul {
+            list-style-type: none;
+            /* 移除默认的列表项符号 */
+            margin: 0;
+            /* 移除默认的外边距 */
+            padding: 0;
+            /* 移除默认的内边距 */
+            font-family: 'Arial', sans-serif;
+            /* 设置一个清晰的字体 */
+            color: #333;
+            /* 设置文字颜色 */
+            line-height: 1.6;
+            /* 设置行高，增加阅读舒适度 */
+        }
+    
+        /* 自定义列表项样式 */
+        ul li {
+            padding: 8px 16px;
+            /* 添加内边距，使列表项有空间 */
+            border-bottom: 1px solid #eaeaea;
+            /* 添加底部边框，分隔列表项 */
+            position: relative;
+            /* 为子元素定位做准备 */
+        }
+    
+        /* 鼠标悬停时的列表项样式 */
+        ul li:hover {
+            background-color: #f5f5f5;
+            /* 轻微的背景色变化，增加视觉反馈 */
+            cursor: default;
+            /* 改变鼠标光标样式 */
+        }
+
+        
+          /* 基本样式 */
+        h1 {
+            font-family: 'Arial', sans-serif; /* 设置字体 */
+            color: #333; /* 设置文字颜色 */
+            text-align: left; /* 文字居中 */
+            margin: 20px 0; /* 上下边距和左右边距 */
+        }
+
+        /* 背景样式 */
+        h1::after {
+            content: ''; /* 伪元素需要content属性 */
+            display: block; /* 使伪元素以块级元素显示 */
+            width: 100%; /* 宽度 */
+            height: 2px; /* 高度 */
+            background: #adbbc9; /* 背景颜色 */
+            margin-top: 10px; /* 与标题文字的间距 */
+        }
+
+        /* 鼠标悬停效果 */
+        h1:hover {
+            color: #adbbc9; /* 鼠标悬停时的文字颜色 */
+            cursor: default; /* 鼠标悬停时的光标样式 */
+        }
+    </style>
 </head>
+
+
 <body>
-    <h1>Video Player</h1>
+    <h1>Websoon Player</h1>
     <ul id="videoList"></ul>
+    <br>
+    <video controls width="640" height="360" id="videoPlayer"></video>
 
     <script>
         fetch('/videos')
@@ -23,14 +87,14 @@
             });
 
         function playVideo(video) {
-            const videoPlayer = document.createElement('video');
+            const videoPlayer = document.getElementById('videoPlayer');
             videoPlayer.controls = true;
             videoPlayer.playsInline = true;
             videoPlayer.muted = true;
             videoPlayer.autoplay = true;
             videoPlayer.loop = true;
             videoPlayer.src = `/video/${video}`;
-            document.body.appendChild(videoPlayer);
+            // document.body.appendChild(videoPlayer);
         }
     </script>
 </body>
